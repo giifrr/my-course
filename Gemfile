@@ -75,3 +75,4 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'simple_form'
 gem 'devise'
 gem 'faker'
+gem "font-awesome-sass", "~> 6.1.2"
