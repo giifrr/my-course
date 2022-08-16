@@ -74,3 +74,4 @@ end
 gem 'bootstrap', '~> 5.1.3'
 gem 'simple_form'
 gem 'devise'
+gem 'faker'
