@@ -1,3 +1,11 @@
 @import "bootstrap";
 @import 'actiontext.css';
 @import "font-awesome";
+
+.form-control.is-invalid {
+  background-image: none;
+}
+
+.form-control.is-valid {
+  background-image: none
+}

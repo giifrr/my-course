@@ -3,7 +3,20 @@
     <i class="fa-solid fa-book"></i> <%= link_to course.title, course, class: "text-decoration-none text-dark" %>
   </div>
   <div class="card-body">
-    <%= course.description %>
+    <%= simple_format(course.short_description) %>
+  </div>
+  <div class="card-footer text-center">
+    <%= number_to_currency(course.price) %>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6">
+        <i class="fa-solid fa-earth-americas"></i> <%= course.language %>
+      </div>
+      <div class="col-md-6 text-end">
+        <i class="fa-solid fa-signal"></i> <%= course.level %>
+      </div>
+    </div>
   </div>
   <div class="card-footer">
     <i class="fa-solid fa-calendar-days"></i> <%= course.created_at.to_formatted_s(:long) %> <br>

@@ -6,11 +6,15 @@
       <%= f.input :title %>
       <%= f.label :description %>
       <%= f.rich_text_area :description %>
+      <%= f.input :short_description %>
+      <%= f.input :level, collection: ["Beginner", "Intermediate", "Advanced"] %>
+      <%= f.input :language, collection: ["English", "Indonesia", "Germany"] %>
+      <%= f.input :price %>
     </div>
   </div>
   <div class="card-footer">
     <div class="form-actions">
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn btn-success mt-4" %>
     </div>
   </div>
 <% end %>
