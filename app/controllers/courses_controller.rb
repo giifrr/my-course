@@ -1,9 +1,15 @@
 class CoursesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[ index ]
   before_action :set_course, only: %i[ show edit update destroy ]
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    # @courses = Course.all
+    if params[:title] 
+      @courses = Course.where("title ILIKE ?", "%#{params[:title]}%")
+    else
+      @courses = Course.all
+    end
   end
 
   # GET /courses/1 or /courses/1.json

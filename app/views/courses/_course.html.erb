@@ -1,12 +1,16 @@
-<div id="<%= dom_id course %>">
-  <p>
-    <strong>Title:</strong>
-    <%= course.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
+<div class="card">
+  <div class="card-header">
+    <i class="fa-solid fa-book"></i> <%= link_to course.title, course, class: "text-decoration-none text-dark" %>
+  </div>
+  <div class="card-body">
     <%= course.description %>
-  </p>
-
+  </div>
+  <div class="card-footer">
+    <i class="fa-solid fa-calendar-days"></i> <%= course.created_at.to_formatted_s(:long) %> <br>
+    <i class="fa-solid fa-chalkboard-user"></i> <%= course.user.email %>
+  </div>
+  <div class="card-footer">
+    <%= link_to "Show", course, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_course_path(course), class: "btn btn-warning" %>
+  </div>
 </div>

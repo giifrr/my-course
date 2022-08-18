@@ -1,2 +1,88 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<%# card group %>
+<div class="card-group">
+  <div class="card card-body">
+    <br>
+    <i class="fa-solid fa-book fa-2xl"></i> <br>
+    <h6>
+      <%= pluralize(Course.count, "course") %> <br>
+      Explore a variety of fresh topics
+    </h6>
+  </div>
+
+  <div class="card card-body">
+    <br>
+    <i class="fa-solid fa-chalkboard-user fa-2xl"></i> <br>
+    <h6>
+      <%= pluralize(User.all.where.not(courses: nil).count, "instructor") %> <br>
+      Find the right instructor for you
+    </h6>
+  </div>
+
+  <div class="card card-body">
+    <br>
+    <i class="fa-solid fa-graduation-cap fa-2xl"></i> <br>
+    <h6>
+      <%= pluralize(User.count, "student") %> <br>
+      Join the knowledge sharing community
+    </h6>
+  </div>
+
+  <div class="card card-body">
+    <br>
+    <i class="fa-solid fa-infinity fa-2xl"></i> <br>
+    <h6>
+      Lifetime access <br>
+      Learn on your schedule
+    </h6>
+  </div>
+</div>
+
+
+<h2>Popular Courses</h2> 
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @popular_courses.each do |course| %>
+    <div class="col">
+      <%= render "courses/course", course: course %>
+    </div>
+  <% end %>
+</div> <hr>
+
+<h2>Top Rated Courses</h2> 
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @popular_courses.each do |course| %>
+    <div class="col">
+      <%= render "courses/course", course: course %>
+    </div>
+  <% end %>
+</div> <hr>
+
+<h2>Most Recent Courses</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @most_recent.each do |course| %>
+    <div class="col">
+      <%= render "courses/course", course: course %>
+    </div>
+  <% end %>
+</div> <hr>
