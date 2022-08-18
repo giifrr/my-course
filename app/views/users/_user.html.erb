@@ -11,4 +11,7 @@
     <%= 'last_sign_in_at'.humanize %> <%=  user.last_sign_in_at.to_formatted_s(:long) unless user.last_sign_in_at.nil? %> <br>
     <%= 'current_sign_in_ip'.humanize %> <%=  user.current_sign_in_ip %> <br>
   </div>
+  <div class="card-footer">
+    <span  class="badge bg-<%= user.confirmed_at ? "success" : "danger" %>"><%= user.confirmed_at ? "Yes" : "No" %></span>
+  </div>
 </div>
