@@ -5,3 +5,33 @@
     </div>
   <% end %>
 </div>
+
+<%= search_form_for @q, class: "mt-4" do |f| %>
+  <%= f.search_field :email_cont %>
+  <%= f.submit "Search", class: "btn btn-outline-success btn-sm" %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col"><%= sort_link(@q, :email) %></th>
+      <th scope="col">Confirmed</th>
+      <th scope="col">Sig in count</th>
+      <th scope="col">Last Sign in at</th>
+      <th scope="col">Current sign in IP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><span  class="badge bg-<%= user.confirmed_at ? "success" : "danger" %>"><%= user.confirmed_at ? "Yes" : "No" %></span></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.last_sign_in_at %></td>
+        <td><%= user.current_sign_in_ip %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
