@@ -7,8 +7,8 @@
       <%= f.label :description %>
       <%= f.rich_text_area :description %>
       <%= f.input :short_description %>
-      <%= f.input :level, collection: ["Beginner", "Intermediate", "Advanced"] %>
-      <%= f.input :language, collection: ["English", "Indonesia", "Germany"] %>
+      <%= f.input :level, collection: Course.levels %>
+      <%= f.input :language, collection: Course.language %>
       <%= f.input :price %>
     </div>
   </div>

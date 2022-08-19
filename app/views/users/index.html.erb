@@ -6,8 +6,8 @@
   <% end %>
 </div>
 
-<%= search_form_for @q, class: "mt-4" do |f| %>
-  <%= f.search_field :email_cont %>
+<%= search_form_for @user_ransack, as: :user_search, url: users_path, class: "mt-4" do |f| %>
+  <%= f.search_field :email_cont, placeholder: "Search by email..." %>
   <%= f.submit "Search", class: "btn btn-outline-success btn-sm" %>
 <% end %>
 
@@ -15,7 +15,7 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col"><%= sort_link(@q, :email) %></th>
+      <th scope="col"><%= sort_link(@user_ransack, :email) %></th>
       <th scope="col">Confirmed</th>
       <th scope="col">Sig in count</th>
       <th scope="col">Last Sign in at</th>

@@ -2,12 +2,23 @@
 
 <h1><%= pluralize(Course.count, "course") %></h1>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<%= search_form_for @ransack_courses, as: :courses_search, url: courses_path, class: "mt-4" do |f| %>
+  <%= f.search_field :title_cont, placeholder: "Search by title..." %>
+  <%= f.search_field :user_email_cont, placeholder: "Search by instructor" %>
+  <%= f.search_field :price_eq, placeholder: "Search by price..." %>
+  <%= f.select :language_cont, Course.language, placeholder: "Search by language...", include_blank: true%>
+  <%= f.select :level_cont, Course.levels, placeholder: "Search by level...", include_blank: true %>
+  <%= f.submit "Search", class: "btn btn-outline-success btn-sm" %>
+  <%= link_to courses_path, class: "btn btn-primary btn-sm" do %>
+    <i class="fa-solid fa-rotate"></i>
+  <% end %>
+<% end %>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
   <% @courses.each do |course| %>
     <div class="col">
       <%= render "course", course: course%>
     </div>
   <% end %>
 </div>
-
-<%= link_to "New course", new_course_path %>
