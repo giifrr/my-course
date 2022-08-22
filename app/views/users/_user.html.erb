@@ -12,6 +12,8 @@
     <%= 'current_sign_in_ip'.humanize %> <%=  user.current_sign_in_ip %> <br>
   </div>
   <div class="card-footer">
-    <span  class="badge bg-<%= user.confirmed_at ? "success" : "danger" %>"><%= user.confirmed_at ? "Yes" : "No" %></span>
+    <%user.roles.each do |role| %>
+      <span class="badge bg-info"><%= role.name %></span>
+    <% end %>
   </div>
 </div>

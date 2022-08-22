@@ -79,3 +79,4 @@ gem "font-awesome-sass", "~> 6.1.2"
 gem 'friendly_id', '~> 5.4.0'
 gem 'ransack'
 gem 'public_activity'
+gem "rolify"

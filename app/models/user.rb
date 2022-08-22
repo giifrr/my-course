@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  rolify 
+  after_create :add_role_for_user
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,4 +8,16 @@ class User < ApplicationRecord
          :trackable
 
   has_many :courses
+
+  def add_role_for_user 
+    if User.count == 0
+      self.add_role(:admin) if self.roles.blank?
+      self.add_role(:teacher)
+      self.add_role(:student)
+    else
+      self.add_role(:student) if self.roles.blank?
+      self.add_role(:teacher)
+    end
+  end
+
 end
