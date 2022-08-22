@@ -1,0 +1,13 @@
+<h1>Activity</h1>
+
+<div class="card">
+  <% @activities.each do |activity| %>
+    <div class="card-header">
+      <%= activity.trackable.title %>
+      <%= activity.key %>
+      <%= activity.parameters %>
+      <%= activity.owner %>
+    </div>
+    <p></p>
+  <% end %>
+</div>

@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @most_recent = Course.all.order(created_at: :desc).limit(3)
   end
 
-  def privacy_policy
+  def activity 
+    @activities = PublicActivity::Activity.all
   end
 end
