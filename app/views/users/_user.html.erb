@@ -15,5 +15,6 @@
     <%user.roles.each do |role| %>
       <span class="badge bg-info"><%= role.name %></span>
     <% end %>
+    <%= link_to "Edit Role", edit_user_path(user), class: "btn btn-warning btn-sm" %>
   </div>
 </div>

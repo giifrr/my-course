@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only: [:index]
+  resources :users, only: [:index, :edit, :update]
   devise_for :users
   resources :courses
   root to: 'pages#home'

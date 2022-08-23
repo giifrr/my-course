@@ -3,7 +3,7 @@
 <div class="card">
   <% @activities.each do |activity| %>
     <div class="card-header">
-      <%= activity.trackable.title %>
+      <%= activity.trackable.title if nil? %>
       <%= activity.key %>
       <%= activity.parameters %>
       <%= activity.owner %>

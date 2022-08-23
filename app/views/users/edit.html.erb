@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header"><h1 class="text-center" >Editing Role</h1></div>
+  <div class="card-body">
+    <%= form_for @user do |f| %>
+      <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
+      <br>
+      <%= f.submit "Change Role", class: "btn btn-primary mt-4" %>
+    <% end %>
+  </div>
+  <div class="card-footer">
+   
+  </div>
+</div>
