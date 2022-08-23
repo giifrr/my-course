@@ -7,9 +7,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user
   end
 
   def update
+    authorize @user 
+    
     if @user.update(user_params)
       flash[:notice] = "Roles updated successfully."
       redirect_to users_path
