@@ -7,5 +7,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 5.times do
-  Course.create(title: Faker::Educator.course_name, description: Faker::Movie.quote, user_id: 1)
+  Course.create(title: Faker::Educator.course_name, 
+                description: Faker::Movie.quote, 
+                user_id: 1,
+                short_description: Faker::Movie.quote,
+                price: Faker::Number.number(digits: 3),
+                language: Faker::Nation.language,
+                level: ["Beginner", "Intermediate", "Advanced"].sample)
 end
