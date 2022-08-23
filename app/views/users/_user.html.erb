@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <i class="fa-regular fa-user"></i> <%= user.email %>
+    <i class="fa-regular fa-user"></i> <span class="badge bg-<%= user.is_online? ? 'success' : 'danger' %>"><%= user.is_online? ? "online" : "offline" %></span> <%= user.email %>
   </div>
   <div class="card-footer">
     <i class="fa-regular fa-clock"></i> <%= time_ago_in_words(user.created_at)  %> Ago

@@ -20,4 +20,8 @@ class User < ApplicationRecord
     end
   end
 
+  def is_online?
+    updated_at > 1.minutes.ago
+  end
+
 end
