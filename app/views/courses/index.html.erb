@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <h1><%= pluralize(Course.count, "course") %></h1>
 
 <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path, class: "mt-4" do |f| %>

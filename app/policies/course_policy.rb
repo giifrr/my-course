@@ -19,7 +19,6 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def update?
-    binding.break
     @user.has_role?(:admin) || @record.user_id == @user.id
   end
 

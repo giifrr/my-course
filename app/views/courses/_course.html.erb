@@ -23,7 +23,8 @@
     <i class="fa-solid fa-chalkboard-user"></i> <%= course.user.email %>
   </div>
   <div class="card-footer">
-    <%= link_to "Show", course, class: "btn btn-primary" %>
-    <%= link_to "Edit", edit_course_path(course), class: "btn btn-warning" %>
+    <% if user_signed_in? && policy(course).edit?%>
+      <%= link_to "Edit", edit_course_path(course), class: "btn btn-warning" %>
+    <% end %>
   </div>
 </div>
