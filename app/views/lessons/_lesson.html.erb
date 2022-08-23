@@ -1,17 +1,4 @@
-<div id="<%= dom_id lesson %>">
-  <p>
-    <strong>Title:</strong>
-    <%= lesson.title %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <%= lesson.content %>
-  </p>
-
-  <p>
-    <strong>Course:</strong>
-    <%= lesson.course_id %>
-  </p>
-
+<div class="card">
+  <div class="card-header"><h5><%= link_to lesson.title, lesson, class: "text-decoration-none text-dark" %></h5></div>
+  <div class="card-body"><%=lesson.content %> </div>
 </div>

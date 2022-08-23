@@ -19,6 +19,9 @@
     </div>
   </div>
   <div class="card-footer">
+    <i class="fa-solid fa-book-open"></i> <%= pluralize(course.lessons.count, "lesson") %>
+  </div>
+  <div class="card-footer">
     <i class="fa-solid fa-calendar-days"></i> <%= course.created_at.to_formatted_s(:long) %> <br>
     <i class="fa-solid fa-chalkboard-user"></i> <%= course.user.email %>
   </div>
