@@ -6,7 +6,9 @@
   <div class="col-lg-6"><%= render @course %></div>
   <div class="col-lg-6">
     <div class="text-center">
-      <%= link_to "Add Lesson", new_lesson_path, class: "btn btn-info btn-sm mb-4" %>
+      <% if user_signed_in? && policy(@course).edit? %>
+        <%= link_to "Add Lesson", new_lesson_path, class: "btn btn-info btn-sm mb-4" %>
+      <% end %>
     </div>
     <% @lessons.each do |lesson| %>
       <%= render "lessons/lesson", lesson: lesson %>
