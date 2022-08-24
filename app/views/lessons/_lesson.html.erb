@@ -1,4 +1,4 @@
 <div class="card">
-  <div class="card-header"><h5><%= link_to lesson.title, lesson, class: "text-decoration-none text-dark" %></h5></div>
+  <div class="card-header"><h5><%= link_to lesson.title, course_lesson_path(lesson.course, lesson), class: "text-decoration-none text-dark" %></h5></div>
   <div class="card-body"><%=lesson.content %> </div>
 </div>
