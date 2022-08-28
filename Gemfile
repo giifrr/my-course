@@ -81,3 +81,4 @@ gem 'ransack'
 gem 'public_activity'
 gem "rolify"
 gem "pundit", "~> 2.2"
+gem 'exception_notification'

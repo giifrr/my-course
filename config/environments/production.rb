@@ -2,6 +2,12 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    email_prefix: '[PREFIX] ',
+    sender_address: %{"notifier" gifar-udemu-clone@heroku.com>},
+    exception_recipients: %w{gifar.anshar12@gmail.com}
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
