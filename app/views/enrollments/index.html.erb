@@ -1,0 +1,32 @@
+<h4 class="text-center mt-4">Enrollments <span class="badge bg-info"><%= Enrollment.count %></span></h4>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Course</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Review</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @enrollments.each do |enrollment| %>
+        <tr>
+          <td><%= enrollment.id %></td>
+          <td><%= enrollment.user.email %></td>
+          <td><%= enrollment.course.title %></td>
+          <td><%= enrollment.rating %></td>
+          <td><%= enrollment.review %></td>
+          <td><%= enrollment.course.price %></td>
+          <td>
+            <%= link_to "Edit", edit_enrollment_path(enrollment), class: "btn btn-warning btn-sm" %>
+            <%= link_to "Show", enrollment_path(enrollment), class: "btn btn-success btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

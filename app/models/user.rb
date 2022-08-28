@@ -7,7 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable
 
-  has_many :courses
+  has_many :courses, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
 
   def add_role_for_user 
     if User.count == 0
