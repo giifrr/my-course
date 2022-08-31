@@ -1,6 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @enrollment %>
+<div class="card">
+  <div class="card-header"><h3>Detail Enrollment</h3></div>
+  <div class="card-body">
+    Email     : <%= @enrollment.user.email %> <br>
+    Course    : <%= @enrollment.course.title %> <br>
+    Price     : <%= number_to_currency(@enrollment.price) %> <br>
+    Rating    : <span class="text-warning"><i class="fa-solid fa-star"></i></span> <%= @enrollment.rating %> <br>
+    Review    : <%= @enrollment.review %>
+  </div>
+  <div class="card-footer">
+    <%= @enrollment.created_at.to_formatted_s(:long) %>
+  </div>
+</div>
 
 <div>
   <%= link_to "Edit this enrollment", edit_enrollment_path(@enrollment) %> |
