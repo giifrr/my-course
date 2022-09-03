@@ -25,4 +25,8 @@ class User < ApplicationRecord
     updated_at > 1.minutes.ago
   end
 
+  def buy_course(course)
+    self.enrollments.create(course: course, price: course.price)
+  end
+
 end

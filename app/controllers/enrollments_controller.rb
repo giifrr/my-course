@@ -1,5 +1,6 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[ show edit update destroy ]
+  before_action :set_enrollment, only: %i[ show destroy ]
+  before_action :set_course, only: %i[ new create edit update]
 
   # GET /enrollments or /enrollments.json
   def index
@@ -17,26 +18,25 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments/1/edit
   def edit
+    @enrollment = Enrollment.find(params[:id])
   end
 
   # POST /enrollments or /enrollments.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
-    @enrollment.price = @enrollment.course.price
-
-    respond_to do |format|
-      if @enrollment.save
-        format.html { redirect_to enrollment_url(@enrollment), notice: "Enrollment was successfully created." }
-        format.json { render :show, status: :created, location: @enrollment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @enrollment.errors, status: :unprocessable_entity }
-      end
+    if @course.price > 0
+      flash[:alert] = "You can not access paid course yet."
+      redirect_to new_course_enrollment_path(@course)
+    else
+      @enrollment = current_user.buy_course(@course)
+      flash[:notice] = "You are enrolled!"
+      redirect_to @course
     end
   end
 
   # PATCH/PUT /enrollments/1 or /enrollments/1.json
   def update
+    @enrollment = Enrollment.find(params[:id])
+    binding.break 
     respond_to do |format|
       if @enrollment.update(enrollment_params)
         format.html { redirect_to enrollment_url(@enrollment), notice: "Enrollment was successfully updated." }
@@ -64,8 +64,12 @@ class EnrollmentsController < ApplicationController
       @enrollment = Enrollment.find(params[:id])
     end
 
+    def set_course
+      @course = Course.friendly.find(params[:course_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def enrollment_params
-      params.require(:enrollment).permit(:rating, :review, :user_id, :course_id)
+      params.require(:enrollment).permit(:rating, :review)
     end
 end
