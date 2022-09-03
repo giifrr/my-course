@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :courses do
     resources :lessons
-    resources :enrollments, only: %i[ new create edit update ]
+    resources :enrollments, only: %i[ new create edit update destroy ]
   end
   resources :enrollments, only: %i[ index show ]
   root to: 'pages#home'

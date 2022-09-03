@@ -1,10 +1,11 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[ show destroy ]
-  before_action :set_course, only: %i[ new create edit update]
+  before_action :set_enrollment, only: %i[ show ]
+  before_action :set_course, only: %i[ new create edit update destroy]
 
   # GET /enrollments or /enrollments.json
   def index
     @enrollments = Enrollment.all
+    authorize @enrollments
   end
 
   # GET /enrollments/1 or /enrollments/1.json
@@ -19,6 +20,7 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/1/edit
   def edit
     @enrollment = Enrollment.find(params[:id])
+    authorize @enrollment
   end
 
   # POST /enrollments or /enrollments.json
@@ -36,7 +38,8 @@ class EnrollmentsController < ApplicationController
   # PATCH/PUT /enrollments/1 or /enrollments/1.json
   def update
     @enrollment = Enrollment.find(params[:id])
-    binding.break 
+    authorize @enrollment
+
     respond_to do |format|
       if @enrollment.update(enrollment_params)
         format.html { redirect_to enrollment_url(@enrollment), notice: "Enrollment was successfully updated." }
@@ -50,6 +53,8 @@ class EnrollmentsController < ApplicationController
 
   # DELETE /enrollments/1 or /enrollments/1.json
   def destroy
+    @enrollment = Enrollment.find(params[:id])
+    authorize @enrollment
     @enrollment.destroy
 
     respond_to do |format|

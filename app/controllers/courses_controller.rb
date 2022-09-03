@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index show ]
-  before_action :set_course, only: %i[  edit update destroy ]
+  before_action :set_course, only: %i[  edit update destroy show ]
 
   def index
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)

@@ -24,6 +24,8 @@
           <td>
             <%= link_to "Edit", edit_course_enrollment_path(enrollment.course, enrollment), class: "btn btn-warning btn-sm" %>
             <%= link_to "Show", enrollment_path(enrollment), class: "btn btn-success btn-sm" %>
+            <p></p>
+            <%= button_to "Delete", course_enrollment_path(enrollment.course, enrollment), method: :delete, class: "btn btn-sm btn-danger" %>
           </td>
         </tr>
       <% end %>
