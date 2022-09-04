@@ -12,4 +12,17 @@ module CoursesHelper
       link_to  number_to_currency(course.price), new_course_enrollment_path(course), class: "btn btn-success btn-sm"
     end
   end
+
+  def review_button(user, course)
+    user_course = course.enrollments.where(user: user)
+    if user
+      if user_course.any? 
+        if user_course.pending_review.any?
+          link_to "Add Review", edit_course_enrollment_path(user_course.first.course_id, user_course.first.id)
+        else
+          link_to "You have already reviewing this course"  
+        end
+      end
+    end
+  end
 end

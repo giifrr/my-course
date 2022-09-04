@@ -1,43 +1,49 @@
-<h4 class="text-center mt-4">Enrollments <span class="badge bg-info"><%= Enrollment.count %></span></h4>
-<div class="table-responsive">
-  <table class="table table-bordered table-striped table-hover">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Bought</th>
-        <th scope="col">Course</th>
-        <th scope="col">Rating</th>
-        <th scope="col">Review</th>
-        <th scope="col">Reviewed On</th>
-        <th scope="col">Price</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @enrollments.each do |enrollment| %>
+<div class="container-fluid">
+  <h4 class="text-center mt-4">Enrollments <span class="badge bg-info"><%= Enrollment.count %></span></h4>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
         <tr>
-          <td><%= enrollment.id %></td>
-          <td><%= enrollment.user.email %></td>
-          <td><%= enrollment.created_at.to_formatted_s(:long) %></td>
-          <td><%= enrollment.course.title %></td>
-          <td>
-            <% if enrollment.rating %>
-              <span class="text-warning"><i class="fa-solid fa-star"></i></span> <%= enrollment.rating %>
-            <% end %>
-          </td>
-          <td><%= enrollment.review %></td>
-          <td><%= enrollment.updated_at.to_formatted_s(:long) %></td>
-          <td><%= enrollment.course.price %></td>
-          <td>
-            <%= link_to "Edit Review", edit_course_enrollment_path(enrollment.course, enrollment), class: "btn btn-warning btn-sm" %>
-            <p></p>
-            <%= link_to "See Review", enrollment_path(enrollment), class: "btn btn-success btn-sm" %>
-            <p></p>
-            <%= button_to "Delete Review", course_enrollment_path(enrollment.course, enrollment), method: :delete, class: "btn btn-sm btn-danger" %>
-          </td>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Bought</th>
+          <th scope="col">Course</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Review</th>
+          <th scope="col">Reviewed On</th>
+          <th scope="col">Price</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @enrollments.each do |enrollment| %>
+          <tr>
+            <td><%= enrollment.id %></td>
+            <td><%= enrollment.user.email %></td>
+            <td><%= enrollment.created_at.to_formatted_s(:long) %></td>
+            <td><%= enrollment.course.title %></td>
+            <td>
+              <% if enrollment.rating %>
+                <span class="text-warning"><i class="fa-solid fa-star"></i></span> <%= enrollment.rating %>
+              <% end %>
+            </td>
+            <td><%= enrollment.review.truncate(20)  if enrollment.review %></td>
+            <td><%= enrollment.updated_at.to_formatted_s(:long) if enrollment.review %></td>
+            <td><%= enrollment.course.price %></td>
+            <td>
+              <%= link_to "Edit Review", edit_course_enrollment_path(enrollment.course, enrollment), class: "btn btn-warning btn-sm" %>
+            </td>
+            <td>
+              <%= link_to "See Review", enrollment_path(enrollment), class: "btn btn-success btn-sm" %>
+            </td>
+            <td>
+              <%= button_to "Delete Enrollment", course_enrollment_path(enrollment.course, enrollment), method: :delete, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
