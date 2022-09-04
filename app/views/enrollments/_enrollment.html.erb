@@ -1,20 +1,19 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Course</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @enrollments.each do |enrollment| %>
-      <tr>
-        <td><%= enrollment.id %></td>
-        <td><%= enrollment.user.email %></td>
-        <td><%= enrollment.course.title %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card">
+  <div class="card-header">
+    <i class="fa-solid fa-user"></i> <%= link_to enrollment.user.email, user_path(enrollment.user) %>
+    <i class="fa-solid fa-clock"></i> <%= enrollment.updated_at.to_formatted_s(:long) %>
+    <i class="fa-solid fa-graduation-cap"></i> <%= enrollment.course.title %>
+  </div>
 
+  <div class="card-body">
+    Rating : <span class="text-warning"><i class="fa-solid fa-star"></i></span> <%= enrollment.rating %> <br>
+
+    Review<i class="fa-solid fa-comment"></i>  : <%= enrollment.review %>
+  </div>
+
+  <div class="card-footer">
+    <% if user_signed_in? && policy(enrollment).edit? %>
+      <%= link_to "Edit review", edit_course_enrollment_path(enrollment.course, enrollment), class: "btn btn-success btn-sm"%>
+    <% end %>
+  </div>
+</div>
