@@ -1,4 +1,7 @@
 class Enrollment < ApplicationRecord
+  extend FriendlyId
+  friendly_id :buy_id, use: :slugged
+
   belongs_to :user
   belongs_to :course
 
@@ -9,6 +12,10 @@ class Enrollment < ApplicationRecord
   validate :cant_subscribe_to_own_course 
 
   scope :pending_review, -> {where(rating: [0, nil, ""], review: [0, nil, ""])}
+
+  def buy_id
+    "enroll " + course.title + " " + user.email
+  end
 
   private
     def cant_subscribe_to_own_course

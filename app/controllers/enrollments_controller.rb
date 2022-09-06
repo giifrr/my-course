@@ -20,7 +20,7 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments/1/edit
   def edit
-    @enrollment = Enrollment.find(params[:id])
+    @enrollment = Enrollment.friendly.find(params[:id])
     authorize @enrollment
   end
 
@@ -38,7 +38,7 @@ class EnrollmentsController < ApplicationController
 
   # PATCH/PUT /enrollments/1 or /enrollments/1.json
   def update
-    @enrollment = Enrollment.find(params[:id])
+    @enrollment = Enrollment.friendly.find(params[:id])
     authorize @enrollment
 
     respond_to do |format|
@@ -54,7 +54,7 @@ class EnrollmentsController < ApplicationController
 
   # DELETE /enrollments/1 or /enrollments/1.json
   def destroy
-    @enrollment = Enrollment.find(params[:id])
+    @enrollment = Enrollment.friendly.find(params[:id])
     authorize @enrollment
     @enrollment.destroy
 
@@ -67,7 +67,7 @@ class EnrollmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
-      @enrollment = Enrollment.find(params[:id])
+      @enrollment = Enrollment.friendly.find(params[:id])
     end
 
     def set_course
