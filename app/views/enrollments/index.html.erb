@@ -1,14 +1,24 @@
 <div class="container-fluid">
+  <%= search_form_for @q do |f| %>
+    <%= f.search_field :rating_eq, placeholder: "rating" %>
+    <%= f.search_field :review_cont, placeholder: "review" %>
+    <%= f.search_field :course_title_cont, placeholder: "course" %>
+    <%= f.search_field :price_eq, placeholder: "price" %>
+    <%= f.submit %>
+    <%= link_to enrollments_path, class: "btn btn-sm btn-primary" do %>
+      <i class="fa-solid fa-arrows-rotate"></i>
+    <% end %>
+  <% end %>
   <h4 class="text-center mt-4">Enrollments <span class="badge bg-info"><%= Enrollment.count %></span></h4>
   <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Bought</th>
+          <th scope="col"><%= sort_link(@q, :user_email, 'Email') %></th>
+          <th scope="col"><%= sort_link(@q, :created_at, 'Bought') %></th>
           <th scope="col">Course</th>
-          <th scope="col">Rating</th>
+          <th scope="col"><%= sort_link(@q, :rating) %></th>
           <th scope="col">Review</th>
           <th scope="col">Reviewed On</th>
           <th scope="col">Price</th>
