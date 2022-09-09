@@ -1,0 +1,22 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="teacherDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="fa-solid fa-user"></i>  Teacher
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="teacherDropdown">
+    <li>
+      <%= link_to mycourse_courses_path, class: "dropdown-item" do %>
+        <i class="fa-solid fa-book-open-reader"></i> My Courses <span class="badge bg-primary"><%= current_user.courses.count %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to mystudents_path, class: "dropdown-item btn" do %>
+        <i class="fa-solid fa-users"></i> My Students <span class="badge bg-primary"><%= Enrollment.joins(:course).where(course: {user: current_user}).count %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_course_path, class: "dropdown-item btn" do %>
+        <i class="fa-solid fa-plus"></i> New Course
+      <% end %>
+    </li>
+  </ul>
+</li>

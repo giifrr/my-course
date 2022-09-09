@@ -11,7 +11,6 @@ class EnrollmentsController < ApplicationController
   end
 
   def mystudents
-    # binding.break
     @pagy, @enrollments = pagy(Enrollment.joins(:course).where(courses: {user: current_user}))
     render :mystudents
   end

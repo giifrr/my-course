@@ -1,0 +1,22 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <i class="fa-solid fa-user"></i>  Admin
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+    <li>
+      <%= link_to enrollments_path, class: "dropdown-item" do %>
+        <i class="fa-solid fa-lock-open"></i> Enrollments <span class="badge bg-primary"><%= Enrollment.all.count %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to users_path, class: "dropdown-item btn" do %>
+        <i class="fa-solid fa-users"></i> Users <span class="badge bg-primary"><%= User.all.count %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to pages_activity_path, class: "dropdown-item btn" do %>
+        <i class="fa-solid fa-bell"></i> Activity
+      <% end %>
+    </li>
+  </ul>
+</li>
