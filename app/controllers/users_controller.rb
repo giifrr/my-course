@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def mystudents
+    
+  end
+
   def update
     authorize @user 
     

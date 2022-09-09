@@ -10,6 +10,12 @@ class EnrollmentsController < ApplicationController
     authorize @enrollments
   end
 
+  def mystudents
+    # binding.break
+    @pagy, @enrollments = pagy(Enrollment.joins(:course).where(courses: {user: current_user}))
+    render :mystudents
+  end
+
   # GET /enrollments/1 or /enrollments/1.json
   def show
   end

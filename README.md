@@ -1,24 +1,20 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<li class="nav-item">
+            <%= link_to new_course_path, class: "nav-link" do %>
+              <i class="fa-solid fa-plus"></i> New Courses
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to users_path, class: "nav-link" do %>
+              <i class="fa-solid fa-users"></i> Users
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to pages_activity_path, class: "nav-link" do %>
+              <i class="fa-solid fa-bell"></i> Activity
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to enrollments_path, class: "nav-link" do %>
+              <i class="fa-solid fa-lock-open"></i> Enrollments
+            <% end %>
+          </li>

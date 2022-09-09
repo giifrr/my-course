@@ -26,26 +26,15 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <%= link_to new_course_path, class: "nav-link" do %>
-              <i class="fa-solid fa-plus"></i> New Courses
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to users_path, class: "nav-link" do %>
-              <i class="fa-solid fa-users"></i> Users
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to pages_activity_path, class: "nav-link" do %>
-              <i class="fa-solid fa-bell"></i> Activity
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to enrollments_path, class: "nav-link" do %>
-              <i class="fa-solid fa-lock-open"></i> Enrollments
-            <% end %>
-          </li>
+          <% if current_user.has_role?(:admin) %>
+            <%= render "layouts/admin_dropdown" %>
+          <% end %>
+          <% if current_user.has_role?(:teacher) %>
+            <%= render "layouts/teacher_dropdown" %>
+          <% end %>
+          <% if current_user.has_role?(:student) %>
+            <%= render "layouts/student_dropdown" %>
+          <% end %>
         <% else %>
           <%= link_to new_user_session_path, class: "nav-link" do %>
             <i class="fa-solid fa-right-to-bracket"></i> Sign in
