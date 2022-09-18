@@ -2,8 +2,8 @@ class Enrollment < ApplicationRecord
   extend FriendlyId
   friendly_id :buy_id, use: :slugged
 
-  belongs_to :user
-  belongs_to :course
+  belongs_to :user, counter_cache: true
+  belongs_to :course, counter_cache: true
 
   validates :user, :course, presence: true
   validates_presence_of :rating, if: :review

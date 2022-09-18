@@ -5,7 +5,7 @@
   <ul class="dropdown-menu" aria-labelledby="teacherDropdown">
     <li>
       <%= link_to mylearning_courses_path, class: "dropdown-item" do %>
-        <i class="fa-solid fa-book-open-reader"></i> My Learning <span class="badge bg-danger"><%= current_user.enrollments.count %></span>
+        <i class="fa-solid fa-book-open-reader"></i> My Learning <span class="badge bg-danger"><%= current_user.enrollments_count %></span>
       <% end %>
     </li>
   </ul>

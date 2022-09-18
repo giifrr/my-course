@@ -20,7 +20,8 @@
     </div>
   </div>
   <div class="card-footer">
-    <i class="fa-solid fa-book-open"></i> <%= pluralize(course.lessons.count, "lesson") %>
+    <i class="fa-solid fa-book-open"></i> <%= pluralize(course.lessons_count, "lesson") %>
+    (<i class="fa-solid fa-graduation-cap"></i> <%= pluralize(course.enrollments_count, "student") %>)
   </div>
   <div class="card-footer">
     <i class="fa-solid fa-calendar-days"></i> <%= course.created_at.to_formatted_s(:long) %> <br>
