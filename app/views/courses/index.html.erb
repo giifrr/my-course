@@ -3,15 +3,29 @@
 <h1 class="text-center"> <span class="badge bg-info"><%= pluralize(@courses.count, "course") %> Found </span></h1>
 
 <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path, class: "mt-4" do |f| %>
-  <%= f.search_field :title_cont, placeholder: "Search by title..." %>
-  <%= f.search_field :user_email_cont, placeholder: "Search by instructor" %>
-  <%= f.search_field :price_eq, placeholder: "Search by price..." %>
-  <%= f.select :language_cont, Course.language, placeholder: "Search by language...", include_blank: true%>
-  <%= f.select :level_cont, Course.levels, placeholder: "Search by level...", include_blank: true %>
-  <%= f.submit "Search", class: "btn btn-outline-success btn-sm" %>
-  <%= link_to courses_path, class: "btn btn-primary btn-sm" do %>
-    <i class="fa-solid fa-rotate"></i>
-  <% end %>
+  <div class="form">
+    <div class="col-2 mb-2">
+      <%= f.search_field :title_cont, placeholder: "Search by title...", class: "form-control" %>
+    </div>
+    <div class="col-2 mb-2">
+      <%= f.search_field :user_email_cont, placeholder: "Search by instructor", class: "form-control" %>
+    </div>
+    
+    <div class="col-2">
+      <%= sort_link(@ransack_courses, :price, {}, class: "form-control text-center mb-2") %>
+      <%= f.search_field :price_eq, placeholder: "Search by price...", class: "form-control mb-2" %> 
+    </div>
+    <div class="col-2 mb-2">
+      <%= f.select :language_cont, Course.language,{}, placeholder: "Search by language...", include_blank: true, class: "form-select" %>
+    </div>
+    <div class="col-2 mb-2">
+      <%= f.select :level_cont, Course.levels,{}, placeholder: "Search by level...", include_blank: true, class: "form-select" %>
+    </div>
+    <%= f.submit "Search", class: "btn btn-outline-success btn-sm" %>
+    <%= link_to courses_path, class: "btn btn-primary btn-sm" do %>
+      <i class="fa-solid fa-rotate"></i>
+    <% end %>
+  </div>
 <% end %>
 
 
