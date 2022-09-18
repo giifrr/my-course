@@ -14,7 +14,11 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_rich_text :description
 
-  LANGUAGES = [:"English", :"Indonesia", :"French"]
+  scope :top_rated_courses, -> {all.limit(3).order(average_rating: :desc)}
+  scope :most_recent, -> { all.order(created_at: :desc).limit(3) }
+  scope :popular_courses, -> {all.order(enrollments_count: :desc).limit(3)}
+  
+  LANGUAGES = [:"English", :"Indonesia", :"French"] 
   def self.language
     LANGUAGES.map {|language|[language, language] }
   end

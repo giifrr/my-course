@@ -59,8 +59,18 @@
   </div>
 </div>
 
+<% if current_user %>
+  <h2><i class="fa-solid fa-bookmark"></i> Continue Learning</h2> 
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @purchased_courses.each do |course| %>
+      <div class="col">
+        <%= render "courses/course", course: course %>
+      </div>
+    <% end %>
+  </div> <hr>
+<% end %>
 
-<h2>Popular Courses</h2> 
+<h2><i class="fa-solid fa-chart-line"></i> Popular Courses</h2> 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @popular_courses.each do |course| %>
     <div class="col">
@@ -69,20 +79,27 @@
   <% end %>
 </div> <hr>
 
-<h2>Top Rated Courses</h2> 
+<h2><i class="fa-solid fa-star"></i> Top Rated Courses</h2> 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-  <% @popular_courses.each do |course| %>
+  <% @top_rated_courses.each do |course| %>
     <div class="col">
       <%= render "courses/course", course: course %>
     </div>
   <% end %>
 </div> <hr>
 
-<h2>Most Recent Courses</h2>
+<h2><i class="fa-solid fa-clock"></i> Most Recent Courses</h2>
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @most_recent.each do |course| %>
     <div class="col">
       <%= render "courses/course", course: course %>
     </div>
+  <% end %>
+</div> <hr>
+
+<h2><i class="fa-solid fa-clock"></i>What they say about us...</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @top_reviewed_course.each do |review| %>
+    <%= render "enrollments/enrollment", enrollment: review %>
   <% end %>
 </div> <hr>

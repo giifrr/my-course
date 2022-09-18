@@ -2,8 +2,11 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ home ]
   
   def home
-    @popular_courses = Course.all.limit(3)
-    @most_recent = Course.all.order(created_at: :desc).limit(3)
+    @top_rated_courses = Course.top_rated_courses
+    @popular_courses = Course.popular_courses
+    @most_recent = Course.most_recent
+    @purchased_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).limit(3)
+    @top_reviewed_course = Enrollment.reviewed.latest_review
   end
 
   def activity 

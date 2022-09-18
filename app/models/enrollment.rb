@@ -14,6 +14,8 @@ class Enrollment < ApplicationRecord
   validate :cant_subscribe_to_own_course 
 
   scope :pending_review, -> {where(rating: [0, nil, ""], review: [0, nil, ""])}
+  scope :reviewed, -> {where.not(rating: [0, nil, ""], review: [0, nil, ""])}
+  scope :latest_review, -> {order(rating: :desc).limit(3)}
 
   def buy_id
     "enroll " + course.title + " " + user.email
