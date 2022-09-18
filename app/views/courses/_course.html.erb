@@ -1,7 +1,7 @@
 <div class="car shadow rounded">
   <div class="card-header">
     <i class="fa-solid fa-book"></i> <%= link_to course.title, course, class: "text-decoration-none text-dark" %>
-    <span class="text-warning"><i class="fa-solid fa-star"></i></span> 
+    <span class="text-warning"><i class="fa-solid fa-star"></i></span> <%= course.average_rating %> 
   </div>
   <div class="card-body">
     <%= simple_format(course.short_description) %>

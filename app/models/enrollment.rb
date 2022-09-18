@@ -19,6 +19,16 @@ class Enrollment < ApplicationRecord
     "enroll " + course.title + " " + user.email
   end
 
+  after_save do
+    unless rating.nil? || rating.zero?
+      course.update_rating 
+    end
+  end
+
+  after_destroy do
+    course.update_rating
+  end
+
   private
     def cant_subscribe_to_own_course
       if self.new_record?
