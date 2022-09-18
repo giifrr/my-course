@@ -7,6 +7,7 @@ class Course < ApplicationRecord
 
   validates :title, :short_description, :language, :price, presence: true
   validates :description, presence: true, length: {minimum: 5}
+  validates_uniqueness_of :title 
 
   belongs_to :user, counter_cache: true
   has_many :lessons, dependent: :destroy

@@ -1,6 +1,7 @@
-<div class="card">
+<div class="car shadow rounded">
   <div class="card-header">
     <i class="fa-solid fa-book"></i> <%= link_to course.title, course, class: "text-decoration-none text-dark" %>
+    <span class="text-warning"><i class="fa-solid fa-star"></i></span> 
   </div>
   <div class="card-body">
     <%= simple_format(course.short_description) %>
@@ -20,12 +21,9 @@
     </div>
   </div>
   <div class="card-footer">
-    <i class="fa-solid fa-book-open"></i> <%= pluralize(course.lessons_count, "lesson") %>
-    (<i class="fa-solid fa-graduation-cap"></i> <%= pluralize(course.enrollments_count, "student") %>)
-  </div>
-  <div class="card-footer">
-    <i class="fa-solid fa-calendar-days"></i> <%= course.created_at.to_formatted_s(:long) %> <br>
-    <i class="fa-solid fa-chalkboard-user"></i> <%= course.user.email %>
+    <i class="fa-solid fa-book-open"></i> <%= course.lessons_count %>
+    (<i class="fa-solid fa-graduation-cap"></i> <%= course.enrollments_count %>)
+    <i class="fa-solid fa-chalkboard-user"></i> <%= course.user.email.split('@').first %>
   </div>
   <div class="card-footer">
     <% if user_signed_in? && policy(course).edit?%>
