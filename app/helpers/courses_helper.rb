@@ -2,7 +2,7 @@ module CoursesHelper
   def enroll_button(user, course)
     if user
       if course.user == user
-        link_to "Your create this course. Go to analytics", course, class: "btn-primary btn-sm"
+        link_to "Go to analytics", course, class: "btn-primary btn-sm btn"
       elsif course.enrollments.where(user_id: user.id, course_id: course.id).any?
         link_to "Go to course", course, class: "btn btn-secondary btn-sm" 
       else  
