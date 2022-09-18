@@ -10,7 +10,6 @@
     <div class="col-2 mb-2">
       <%= f.search_field :user_email_cont, placeholder: "Search by instructor", class: "form-control" %>
     </div>
-    
     <div class="col-2">
       <%= sort_link(@ransack_courses, :price, {}, class: "form-control text-center mb-2") %>
       <%= f.search_field :price_eq, placeholder: "Search by price...", class: "form-control mb-2" %> 
@@ -20,6 +19,15 @@
     </div>
     <div class="col-2 mb-2">
       <%= f.select :level_cont, Course.levels,{}, placeholder: "Search by level...", include_blank: true, class: "form-select" %>
+    </div>
+    <div class="col-2 mb-2">
+      <%= sort_link(@ransack_courses, :average_rating, {}, class: "form-control text-center mb-2") %>
+    </div>
+    <div class="col-2 mb-2">
+      <%= sort_link(@ransack_courses, :enrollments_count, "Popularity", {}, class: "form-control text-center mb-2") %>
+    </div>
+    <div class="col-2 mb-2">
+      <%= sort_link(@ransack_courses, :created_at, "Most Recent", {}, class: "form-control text-center mb-2") %>
     </div>
     <%= f.submit "Search", class: "btn btn-outline-success btn-sm" %>
     <%= link_to courses_path, class: "btn btn-primary btn-sm" do %>
