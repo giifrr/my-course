@@ -9,6 +9,7 @@
   <div class="card-footer text-center">
     <%= enroll_button(current_user, course) %>
     <%= review_button(current_user, course) %>
+    <i class="fa-solid fa-spinner"></i> <%= number_to_percentage(course.progress(current_user), precision: 0)  %>
   </div>
   <div class="card-footer">
     <div class="row">

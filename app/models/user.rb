@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :courses, dependent: :destroy
   has_many :enrollments, dependent: :destroy
+  has_many :user_lessons
 
   def add_role_for_user 
     if User.count == 0

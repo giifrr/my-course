@@ -12,6 +12,7 @@ class Course < ApplicationRecord
   belongs_to :user, counter_cache: true
   has_many :lessons, dependent: :destroy
   has_many :enrollments, dependent: :destroy
+  has_many :user_lessons, through: :lessons
   has_rich_text :description
 
   scope :top_rated_courses, -> {all.limit(3).order(average_rating: :desc)}
@@ -37,6 +38,12 @@ class Course < ApplicationRecord
       update_column :average_rating, (enrollments.average(:rating).round(2).to_f)
     else
       update_column :average_rating, (0)
+    end
+  end
+
+  def progress(user)
+    if self.lessons_count > 0
+      user_lessons.where(user: user).count / self.lessons_count.to_f*100
     end
   end
   
