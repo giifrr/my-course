@@ -4,7 +4,7 @@
     <span class="text-warning"><i class="fa-solid fa-star"></i></span> <%= course.average_rating %> 
   </div>
   <div class="card-body">
-    <%= simple_format(course.short_description) %>
+    <%= simple_format(truncate(course.short_description, length: 50)) %>
   </div>
   <div class="card-footer text-center">
     <%= enroll_button(current_user, course) %>
@@ -28,7 +28,35 @@
   </div>
   <div class="card-footer">
     <% if user_signed_in? && policy(course).edit?%>
+      <!-- Edit Course -->
       <%= link_to "Edit", edit_course_path(course), class: "btn btn-warning" %>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete Course
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure want to delete this course?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <%= button_to "Delete course", course_path(course), method: :delete, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Add Lesson  -->
+      <%= link_to "Add Lesson", new_course_lesson_path(course), class: "btn btn-info" %>
     <% end %>
   </div>
 </div>

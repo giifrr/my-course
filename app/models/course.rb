@@ -43,8 +43,12 @@ class Course < ApplicationRecord
 
   def progress(user)
     if self.lessons_count > 0
-      user_lessons.where(user: user).count / self.lessons_count.to_f*100
+      user_lessons.where(user: user).size / self.lessons_count.to_f*100
     end
+  end
+
+  def lesson_completed(user)
+    user_lessons.where(user: user).size
   end
   
 end

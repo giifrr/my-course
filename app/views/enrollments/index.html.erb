@@ -19,8 +19,8 @@
           <th scope="col"><%= sort_link(@q, :created_at, 'Bought') %></th>
           <th scope="col">Course</th>
           <th scope="col"><%= sort_link(@q, :rating) %></th>
-          <th scope="col">Review</th>
           <th scope="col">Reviewed On</th>
+          <th scope="col">Progress </th>
           <th scope="col">Price</th>
           <th scope="col"></th>
           <th scope="col"></th>
@@ -39,17 +39,18 @@
                 <span class="text-warning"><i class="fa-solid fa-star"></i></span> <%= enrollment.rating %>
               <% end %>
             </td>
-            <td><%= enrollment.review.truncate(20)  if enrollment.review %></td>
             <td><%= enrollment.updated_at.to_formatted_s(:long) if enrollment.review %></td>
+            <td><%= number_to_percentage(enrollment.course.progress(enrollment.user), precision: 0) %></td>
             <td><%= enrollment.course.price %></td>
-            <td>
-              <%= link_to "Edit Review", edit_course_enrollment_path(enrollment.course, enrollment), class: "btn btn-warning btn-sm" %>
-            </td>
             <td>
               <%= link_to "See Review", enrollment_path(enrollment), class: "btn btn-success btn-sm" %>
             </td>
+   
             <td>
-              <%= button_to "Delete Enrollment", course_enrollment_path(enrollment.course, enrollment), method: :delete, class: "btn btn-sm btn-danger" %>
+              <%= button_to "Edit Review", edit_course_enrollment_path(enrollment.course, enrollment), method: :get, class: "btn btn-warning btn-sm", disabled: (true unless policy(enrollment).edit?) %>
+            </td>
+            <td>
+              <%= button_to "Delete Enrollment", course_enrollment_path(enrollment.course, enrollment), method: :delete, class: "btn btn-sm btn-danger", disabled: (true unless policy(enrollment).edit?) %>
             </td>
           </tr>
         <% end %>

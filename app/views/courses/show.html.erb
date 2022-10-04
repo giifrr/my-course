@@ -5,42 +5,53 @@
 <p></p>
 
 <div class="row">
-  <div class="col-lg-6"><%= render @course %></div>
-  <div class="col-lg-6">
-    <div class="text-center">
-      <% if user_signed_in? && policy(@course).edit? %>
-        <%= link_to "Add Lesson", new_course_lesson_path(@course), class: "btn btn-info btn-sm mb-4" %>
+  <!-- Jumbotron -->
+  <div class="col-md-12 mb-4">
+    <div class="h-100 p-5 text-white bg-dark rounded-3">
+      <h2><%= @course.title %></h2>
+      <p><%= @course.short_description %></p>
+
+      <button class="btn btn-outline-light" type="button">Example button</button>
+    </div>
+  </div>
+  <div class="col-lg-8 order-1 order-lg-1">
+    <h4>
+      <i class="fa-solid fa-list-check"></i>
+      Lessons: <%= @course.lesson_completed(current_user) %>/<%= @course.lessons_count %> 
+      <div class="float-end">
+        <i class="fa-solid fa-spinner"></i>
+        <%= number_to_percentage(@course.progress(current_user), precision: 0) %>
+      </div>
+    </h4>
+    <div class="overvlow-scroll">
+      <% @lessons.each do |lesson| %>
+        <div class="list-group list-group-numbered">
+          <%= render "lessons/lesson_preview", lesson: lesson %>
+        </div>
       <% end %>
     </div>
-    <% @lessons.each do |lesson| %>
-      <%= render "lessons/lesson", lesson: lesson %>
-    <% end %>
+  </div>
+  <div class="col-lg-4 order-0 order-lg-1">
+    <div class="sticky-top">
+      <%= render @course %>
+    </div>
   </div>
 </div>
 
-<p></p>
+<hr>
 
-<!-- Button trigger modal -->
-<% if user_signed_in? && policy(@course).edit? %>
-  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Delete Course
-  </button>
-<% end %>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure want to delete this course?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= button_to "Delete course", course_path(@course), method: :delete, class: "btn btn-danger" %>
+<div class="">
+  <p>
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Review</a>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card card-body">
+          <% @reviews.each do |review| %>
+            <%= render "enrollments/enrollment", enrollment: review%>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,9 @@
+<div class="list-group-item">
+  <% if lesson.viewed?(current_user) %>
+    <span class="text-success"><i class="fa-solid fa-square-check"></i></span>
+  <% else %>
+    <i class="fa-regular fa-square"></i>
+  <% end %>
+  <%= link_to lesson.title, course_lesson_path(lesson.course, lesson), class: "text-dark" %>
+  <p><%= truncate(lesson.content.to_plain_text, length: 20) %></p>
+</div>
