@@ -17,7 +17,7 @@
   <div class="col-lg-8 order-1 order-lg-1">
     <h4>
       <i class="fa-solid fa-list-check"></i>
-      Lessons: <%= @course.lesson_completed(current_user) %>/<%= @course.lessons_count %> 
+      <%= pluralize(@course.lessons_count, "Lessons") %>: <%= @course.lesson_completed(current_user) %>/<%= @course.lessons_count %> 
       <div class="float-end">
         <i class="fa-solid fa-spinner"></i>
         <%= number_to_percentage(@course.progress(current_user), precision: 0) %>
