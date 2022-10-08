@@ -83,3 +83,5 @@ gem "rolify"
 gem "pundit", "~> 2.2"
 gem 'exception_notification'
 gem 'pagy'
+gem "chartkick"
+gem "groupdate"
