@@ -9,3 +9,5 @@ pin "@popperjs/core", to: "https://unpkg.com/@popperjs/core@2.11.2/dist/esm/inde
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.js"
+pin "chartkick", to: "chartkick.js"
+pin "Chart.bundle", to: "Chart.bundle.js"

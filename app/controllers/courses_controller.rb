@@ -64,11 +64,14 @@ class CoursesController < ApplicationController
 
   def destroy
     authorize @course
-    @course.destroy
-
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
-      format.json { head :no_content }
+    binding.break
+    if @course.destroy
+      respond_to do |format|
+        format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else  
+      redirect_to courses_path, alert: "Course has enrollments can't be deleted"
     end
   end
 
