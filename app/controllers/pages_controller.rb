@@ -12,4 +12,12 @@ class PagesController < ApplicationController
   def activity 
     @activities = PublicActivity::Activity.all
   end
+
+  def analytics
+    if current_user.has_role?(:admin)
+      
+    else
+      redirect_to root_path
+    end
+  end
 end

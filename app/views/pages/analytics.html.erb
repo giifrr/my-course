@@ -1,0 +1,14 @@
+<h2>User Created / Day</h2>
+<%= line_chart  charts_users_created_path, loading: "Load data..." %>
+<hr>
+
+<h2>Course Created / Day</h2>
+<%= line_chart charts_courses_created_path, loading: "Load data..." %>
+<hr>
+
+<h2>Enrollment Created / Day </h2>
+<%= line_chart charts_enrollments_created_path, loading: "Load data..." %>
+<hr>
+
+<h2>Course Popularity</h2>
+<%= pie_chart charts_course_popularity_path, loading: "Load data..." %>
