@@ -11,8 +11,12 @@ Rails.application.routes.draw do
   resources :enrollments, only: %i[ index show ]
   get 'mystudents', to: 'enrollments#mystudents'
 
+  get 'analytics', to: 'pages#analytics'
   namespace :charts do 
     get 'users_created'
+    get 'courses_created'
+    get 'enrollments_created'
+    get 'course_popularity'
   end
 
   root to: 'pages#home'
